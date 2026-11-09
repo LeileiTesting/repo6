@@ -1,0 +1,77 @@
+{
+  "mcpTranslationVersion": "0.6",
+  "target": {
+    "ordId": "sap.s4:apiResource:CE_COSTCENTER_0001:v1",
+    "type": "openapi-v3"
+  },
+  "serverInfo": {
+    "name": "sap.s4/CE_COSTCENTER_0001_MCP",
+    "title": "Cost Center MCP Server",
+    "version": "1.0.0",
+    "description": "MCP server for the CE_COSTCENTER_0001 service. Provides read access to SAP S/4HANA Cost Center master data."
+  },
+  "tools": [
+    {
+      "name": "listCostCenters",
+      "title": "List Cost Centers",
+      "description": "Get cost center entities from SAP S/4HANA Controlling. Supports filtering, sorting, pagination, field selection, and count. Returns CostCenter, CostCenterName, CostCenterDescription, ControllingArea, CompanyCode, ValidityStartDate, ValidityEndDate, CostCenterCategory, CostCtrResponsiblePersonName, Department, ProfitCenter.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "top": {
+            "type": "integer",
+            "description": "Show only the first n items (max 100)"
+          },
+          "skip": {
+            "type": "integer",
+            "description": "Skip the first n items"
+          },
+          "filter": {
+            "type": "string",
+            "description": "Filter items by property values, e.g. ControllingArea eq '1000'"
+          },
+          "count": {
+            "type": "boolean",
+            "description": "Include count of items in response (@odata.count)"
+          },
+          "orderby": {
+            "type": "string",
+            "description": "Order items by property values, e.g. CostCenter asc"
+          },
+          "select": {
+            "type": "string",
+            "description": "Select specific properties, e.g. CostCenter,CostCenterName,ControllingArea"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "@odata.count": {
+            "type": "integer",
+            "description": "Total number of cost centers (when count=true)"
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ControllingArea": {"type": "string"},
+                "CostCenter": {"type": "string"},
+                "ValidityEndDate": {"type": "string"},
+                "ValidityStartDate": {"type": "string"},
+                "CostCenterName": {"type": "string"},
+                "CostCenterDescription": {"type": "string"},
+                "CompanyCode": {"type": "string"},
+                "CostCenterCategory": {"type": "string"},
+                "CostCtrResponsiblePersonName": {"type": "string"},
+                "Department": {"type": "string"},
+                "ProfitCenter": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

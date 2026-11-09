@@ -1,0 +1,123 @@
+{
+  "servers": {
+    "CE_COSTCENTER_0001": {
+      "mcp_server_name": "sap.s4/CE_COSTCENTER_0001_MCP",
+      "description": "MCP server for SAP S/4HANA Cost Center master data. Provides read access to cost center information in Controlling.",
+      "tools": {
+        "listCostCenters": {
+          "description": "Get cost center entities from SAP S/4HANA Controlling. Supports filtering, sorting, pagination, field selection, and count. Returns CostCenter, CostCenterName, CostCenterDescription, ControllingArea, CompanyCode, ValidityStartDate, ValidityEndDate, CostCenterCategory, CostCtrResponsiblePersonName, Department, ProfitCenter.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "top": {
+                "type": "integer",
+                "description": "Show only the first n items (max 100)"
+              },
+              "skip": {
+                "type": "integer",
+                "description": "Skip the first n items"
+              },
+              "filter": {
+                "type": "string",
+                "description": "Filter items by property values, e.g. ControllingArea eq '1000'"
+              },
+              "count": {
+                "type": "boolean",
+                "description": "Include count of items in response (@odata.count)"
+              },
+              "orderby": {
+                "type": "string",
+                "description": "Order items by property values, e.g. CostCenter asc"
+              },
+              "select": {
+                "type": "string",
+                "description": "Select specific properties, e.g. CostCenter,CostCenterName,ControllingArea"
+              }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "@odata.count": 42,
+            "value": [
+              {
+                "ControllingArea": "A000",
+                "CostCenter": "0000001000",
+                "ValidityEndDate": "9999-12-31",
+                "ValidityStartDate": "2000-01-01",
+                "CostCenterName": "Administration",
+                "CostCenterDescription": "Corporate Administration",
+                "CompanyCode": "1010",
+                "CostCenterCategory": "1",
+                "CostCtrResponsiblePersonName": "Jane Smith",
+                "Department": "ADMIN",
+                "ProfitCenter": "PC1000"
+              },
+              {
+                "ControllingArea": "A000",
+                "CostCenter": "0000001100",
+                "ValidityEndDate": "9999-12-31",
+                "ValidityStartDate": "2000-01-01",
+                "CostCenterName": "Finance",
+                "CostCenterDescription": "Finance Department",
+                "CompanyCode": "1010",
+                "CostCenterCategory": "1",
+                "CostCtrResponsiblePersonName": "John Doe",
+                "Department": "FIN",
+                "ProfitCenter": "PC1100"
+              },
+              {
+                "ControllingArea": "A000",
+                "CostCenter": "0000001200",
+                "ValidityEndDate": "9999-12-31",
+                "ValidityStartDate": "2000-01-01",
+                "CostCenterName": "HR",
+                "CostCenterDescription": "Human Resources",
+                "CompanyCode": "1010",
+                "CostCenterCategory": "1",
+                "CostCtrResponsiblePersonName": "Alice Brown",
+                "Department": "HR",
+                "ProfitCenter": "PC1200"
+              },
+              {
+                "ControllingArea": "A000",
+                "CostCenter": "0000001300",
+                "ValidityEndDate": "9999-12-31",
+                "ValidityStartDate": "2000-01-01",
+                "CostCenterName": "IT",
+                "CostCenterDescription": "Information Technology",
+                "CompanyCode": "1010",
+                "CostCenterCategory": "1",
+                "CostCtrResponsiblePersonName": "Bob Wilson",
+                "Department": "IT",
+                "ProfitCenter": "PC1300"
+              },
+              {
+                "ControllingArea": "A000",
+                "CostCenter": "0000001400",
+                "ValidityEndDate": "9999-12-31",
+                "ValidityStartDate": "2000-01-01",
+                "CostCenterName": "Marketing",
+                "CostCenterDescription": "Marketing Department",
+                "CompanyCode": "1010",
+                "CostCenterCategory": "1",
+                "CostCtrResponsiblePersonName": "Carol Davis",
+                "Department": "MKT",
+                "ProfitCenter": "PC1400"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_for_agent": "cost-center-agent",
+    "mock_mode": true,
+    "deterministic": true,
+    "total_servers": 1,
+    "total_tools": 1,
+    "generated_from": ["mcp-spec-CE_COSTCENTER_0001-listCostCenters.json"],
+    "generation_date": "2026-09-01"
+  }
+}

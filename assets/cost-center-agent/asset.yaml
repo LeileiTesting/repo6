@@ -1,0 +1,47 @@
+apiVersion: asset.sap/v1
+kind: Asset
+
+metadata:
+  name: cost-center-agent
+  version: 1.0.0
+
+type: agent
+
+agentCard:
+  name: Cost Center Intelligence Agent
+  version: 1.0.0
+  description: AI agent for Finance Controllers to query SAP S/4HANA cost center data using natural language. Answers questions about total count of cost centers and top 5 cost centers instantly without manual SAP transactions.
+
+container:
+  buildPath: .
+  port: 5000
+
+provides:
+  apis:
+    - name: cost-center-agent
+      kind: a2a
+      ordId: customer.build:apiResource:cost-center-agent-72b12.cost-center-agent:v1
+
+requires:
+  - name: ce-costcenter-0001-mcp
+    kind: mcp-server
+    ordId: sap.s4:apiResource:CE_COSTCENTER_0001:v1
+
+probes:
+  startup:
+    path: /.well-known/agent.json
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 18
+  liveness:
+    path: /.well-known/agent.json
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+  readiness:
+    path: /.well-known/agent.json
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
